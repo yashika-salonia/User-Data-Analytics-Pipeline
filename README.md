@@ -2,54 +2,46 @@
 
 ## 📌 Overview
 
-This project demonstrates a simplified **ETL (Extract, Transform, Load) data pipeline** built using Python. It processes raw user activity data and generates meaningful insights through data transformation and visualization.
-
-The pipeline simulates real-world data engineering workflows on a smaller scale using CSV-based data.
+This project demonstrates a modular **data engineering pipeline** that processes and analyzes raw user activity data using Python and SQLite. It simulates real-world ETL workflows by transforming raw CSV data into structured insights and storing it in a database for analysis.
 
 ## ⚙️ Tech Stack
 
 * Python
 * Pandas
+* SQLite (SQL)
 * Matplotlib
-* CSV (as data source)
+* CSV
 * Git & GitHub
 
 ## 🔄 Pipeline Workflow
 
-### 1. Extract
+### 1. Data Extraction
 
-* Raw user activity data is loaded from a CSV file
-* Data includes session time, subject, and distraction metrics
+* Raw user activity data is loaded from CSV files
+* Dataset includes session time, subject, and distraction metrics
 
-### 2. Transform
+### 2. Data Transformation
 
-* Feature engineering is applied:
+* Data cleaning and preprocessing applied
+* Feature engineering performed to calculate:
 
   **Focus Score = Session Time − (Distraction Count × 5)**
 
-* Invalid or low-quality data is filtered out
+### 3. Data Loading
 
-### 3. Load
+* Processed data stored in **SQLite database**
+* Structured storage enables SQL-based querying and analysis
 
-* Cleaned and processed data is stored in a new CSV file
-* Ready for further analysis or integration
+### 4. Data Analysis
 
-### 4. Analyze
+* SQL queries used to extract insights from processed data
+* Visualizations generated to understand productivity trends
 
-* Data visualization is performed to extract insights:
+## 📊 Key Insights
 
-  * Subject-wise focus trends
-  * Impact of distractions on productivity
-
-## 📊 Visual Insights
-
-### 1. Average Focus Score per Subject
-
-* Helps identify which subjects require more concentration
-
-### 2. Distraction vs Focus Score
-
-* Shows negative correlation between distractions and productivity
+* Higher distraction counts negatively impact focus score
+* Subject-wise analysis reveals variation in productivity levels
+* Session time correlates with improved performance when distractions are low
 
 ## 📁 Project Structure
 
@@ -59,15 +51,16 @@ data-pipeline-user-analytics/
 ├── data/
 │   └── raw_data.csv
 │
+├── database/
+│   └── analytics.db
+│
 ├── scripts/
-│   ├── ingest.py
+│   ├── ingest_to_sql.py
+│   ├── query_analysis.py
 │   ├── transform.py
-│   ├── load.py
-│   ├── analyze.py
-│   └── generate_data.py
+│   ├── visualize.py
 │
 ├── output/
-│   ├── processed_data.csv
 │   └── charts/
 │
 ├── main.py
@@ -81,31 +74,30 @@ data-pipeline-user-analytics/
 # Install dependencies
 pip install -r requirements.txt
 
-# Generate dataset
-python scripts/generate_data.py
-
-# Run pipeline
+# Run full pipeline
 python main.py
 ```
 
-## 📈 Sample Insights
+## 📈 Visualizations
 
-* Users with higher distraction counts tend to have significantly lower focus scores
-* Some subjects (like DSA) show higher variability in focus
+The project generates the following charts:
+
+* Average session time per subject
+* Relationship between distractions and productivity
 
 ## 🚀 Future Improvements
 
-* Replace CSV with PostgreSQL for structured storage
-* Scale processing using PySpark for large datasets
-* Automate pipeline using Airflow
-* Deploy as a cloud-based data pipeline (AWS/GCP)
+* Replace SQLite with PostgreSQL for scalable storage
+* Automate pipeline using Apache Airflow
+* Add real-time data ingestion support
+* Deploy as a cloud-based analytics system
 
 ## 🧠 Key Learnings
 
-* Understanding of ETL pipeline design
-* Data transformation and feature engineering
-* Basic data analysis and visualization
-* Structuring real-world data projects
+* ETL pipeline design and implementation
+* SQL-based data querying and storage
+* Feature engineering for behavioral analytics
+* Data visualization and insight generation
+* Modular software design for scalability
 
-## 📬 Author
-Made with curosity - Yashika ;)
+#### made with curosity - Yashika ;) 
