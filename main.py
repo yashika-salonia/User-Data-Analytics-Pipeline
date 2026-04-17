@@ -1,13 +1,11 @@
-from scripts.ingest import load_data
-from scripts.transform import transform_data
-from scripts.load import save_data
-from scripts.analyze import analyze_data
+from scripts.ingest_to_sql import load_to_db
+from scripts.query_analysis import run_queries
+from scripts.visualize import plot_data
 
-raw_path = "data/raw_data.csv"
-output_path = "output/processed_data.csv"
+csv_path = "data/raw_data.csv"
 
-df = load_data(raw_path)
-df = transform_data(df)
-save_data(df, output_path)
+load_to_db(csv_path)
 
-analyze_data(output_path)
+df1, df2 = run_queries()
+
+plot_data(df1, df2)
